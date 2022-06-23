@@ -1,0 +1,50 @@
+
+.container {
+    width: 1720px;
+    margin: 0 auto;
+}
+
+.post {
+
+    &__item {
+        margin-top: 135px;
+        width: 1660px;
+        min-height: 455px;
+        background-color: #fff;
+        padding: 0 133px;
+        padding-bottom: 50px;
+    }
+    &__title {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 33px;
+
+        color: #000000;
+        padding-top: 40px;
+    }
+
+    &__name {
+        font-family: 'Roboto';
+        font-style: italic;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        text-decoration-line: underline;
+
+        color: #000000;
+        margin-top: 15px;
+    }
+
+    &__text {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+
+        color: #000000;
+        margin-top: 15px;
+    }
+}
