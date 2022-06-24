@@ -1,21 +1,24 @@
 import './users.scss';
 
-import mail from './img/Mail.png';
-import phone from './img/Phone.png';
+import mailImg from './img/Mail.png';
+import phoneImg from './img/Phone.png';
 
-const UsersItem = () => {
+const UsersItem = (props) => {
+
+    const {name, email, phone} = props;
+    
     return (
         <div className="users__item">
             <div className="users__icon"></div>
             <div className="users__text">
-                <div className="users__name">Leanne Graham</div>
+                <div className="users__name">{name}</div>
                 <div className="users__email">
-                    <img src={mail} alt="mail"/>
-                    <div className="users__email__em">Sincere@april.biz</div>
+                    <img src={mailImg} alt="mail"/>
+                    <div className="users__email__em">{email}</div>
                 </div>
                 <div className="users__phone">
-                    <img src={phone} alt="phone"/>
-                    <div className="users__phone__ph">1-770-736-8031 x56442</div>
+                    <img src={phoneImg} alt="phone"/>
+                    <div className="users__phone__ph">{phone}</div>
                 </div>
             </div>
         </div>

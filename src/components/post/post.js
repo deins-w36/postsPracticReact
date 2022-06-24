@@ -9,6 +9,10 @@ const Post = () => {
                     <div class="post__name">James Lee</div>
                     <div class="post__text">Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago. Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago. Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago. Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago. Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago.</div>
                 </div>
+                <div className="post__back">
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </section>
     )
