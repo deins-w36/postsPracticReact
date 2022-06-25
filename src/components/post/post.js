@@ -1,13 +1,14 @@
 import './post.scss'
 
 const Post = () => {
+
     return (
-        <section class="post">
-            <div class="container">
-                <div class="post__item">
-                    <div class="post__title">Modern Frontend Applications</div>
-                    <div class="post__name">James Lee</div>
-                    <div class="post__text">Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago. Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago. Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago. Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago. Web Development is an ever-changing field — the way we build websites today is completely different from how we used to do it a couple of years ago.</div>
+        <section className="post">
+            <div className="container">
+                <div className="post__item">
+                    <div className="post__title">eqw</div>
+                    <div className="post__name">James Lee</div>
+                    <div className="post__text">eqweqw</div>
                 </div>
                 <div className="post__back">
                     <span></span>
