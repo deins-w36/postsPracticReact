@@ -16,7 +16,8 @@ class App extends Component {
 
 		this.state = {
 			menu : 'posts',
-			dataUsers : []
+			dataUsers : [],
+			dataPosts : []
 		}
 	}
 
@@ -37,6 +38,8 @@ class App extends Component {
 					})
 				})
 			});
+
+		
 	}
 	
 
@@ -55,8 +58,8 @@ class App extends Component {
 			  	{usersContent}
 			  	{postContent}
 			</>
-		  );
+		);
 	}
-  }
+}
   
-  export default App;
+export default App;

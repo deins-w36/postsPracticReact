@@ -5,11 +5,11 @@ import phoneImg from './img/Phone.png';
 
 const UsersItem = (props) => {
 
-    const {name, email, phone} = props;
-    
+    const {name, email, phone, strName} = props;
+
     return (
         <div className="users__item">
-            <div className="users__icon"></div>
+            <div className="users__icon">{strName}</div>
             <div className="users__text">
                 <div className="users__name">{name}</div>
                 <div className="users__email">

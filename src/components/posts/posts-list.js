@@ -14,6 +14,7 @@ const PostsList = () => {
                     <PostsItem/>
                 
                 </div>
+                <div className="posts__more">Show more</div>
             </div>
         </section>
     )

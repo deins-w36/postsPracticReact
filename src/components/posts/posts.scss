@@ -4,7 +4,7 @@
 }
 
 .posts {
-
+    position: relative;
 
     &__wrapper {
         display: flex;
@@ -77,6 +77,17 @@
                 transform: rotate(-45deg);
                 transform-origin: top right;
             }
+        }
+    }
+
+    &__more {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
         }
     }
 }
