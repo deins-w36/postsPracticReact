@@ -4,7 +4,7 @@ import './users.scss';
 
 
 
-const UsersList = ({dataUsers}) => {
+const UsersList = ({dataUsers, onFilterPostsToName}) => {
 
     const users = dataUsers.map(item => {
 
@@ -12,7 +12,13 @@ const UsersList = ({dataUsers}) => {
         const strName = strSplit[0][0] + strSplit[1][0];
 
         return (
-            <UsersItem key={item[0]} name={item[1]} email={item[2]} phone={item[3]} strName={strName}/>
+            <UsersItem 
+            key={item[0]} 
+            name={item[1]} 
+            email={item[2]} 
+            phone={item[3]} 
+            strName={strName} 
+            onFilterPostsToName={() => onFilterPostsToName(item[0])}/>
         )
     })
 

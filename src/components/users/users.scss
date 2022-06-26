@@ -1,5 +1,5 @@
 .container {
-    width: 1720px;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -44,6 +44,10 @@
         line-height: 28px;
         color: #000000;
         margin-bottom: 30px;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     &__email {
@@ -64,6 +68,11 @@
         align-items: center;
         &__em {
             margin-left: 15px;
+            text-decoration: none;
+            color: #000000;
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 
@@ -83,6 +92,11 @@
         align-items: center;
         &__ph {
             margin-left: 15px;
+            text-decoration: none;
+            color: #000000;
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 }
