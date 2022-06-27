@@ -11,7 +11,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        margin-top: 85px;
+        margin-top: 70px;
     }
     &__item {
         width: 350px;
@@ -85,6 +85,14 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__filter {
+        margin-top: 15px;
+        text-align: center;
         cursor: pointer;
         &:hover {
             text-decoration: underline;
