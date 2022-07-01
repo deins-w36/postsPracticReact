@@ -1,8 +1,6 @@
-import './posts.scss';
+import './posts.scss'
 
-
-
-const PostsItem = ({title,body,userName, getId}) => {
+const PostsItem = ({ title, body, userName, getId }) => {
     return (
         <div className="posts__item">
             <div className="posts__title">{title}</div>
@@ -16,4 +14,4 @@ const PostsItem = ({title,body,userName, getId}) => {
     )
 }
 
-export default PostsItem;
+export default PostsItem

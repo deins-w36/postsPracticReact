@@ -1,24 +1,29 @@
-import './users.scss';
+import './users.scss'
 
-import mailImg from './img/Mail.png';
-import phoneImg from './img/Phone.png';
+import mailImg from './img/Mail.png'
+import phoneImg from './img/Phone.png'
 
 const UsersItem = (props) => {
-
-    const {name, email, phone, strName, onFilterPostsToName} = props;
+    const { name, email, phone, strName, onFilterPostsToName } = props
 
     return (
         <div className="users__item">
             <div className="users__icon">{strName}</div>
             <div className="users__text">
-                <div onClick={onFilterPostsToName} className="users__name">{name}</div>
+                <div onClick={onFilterPostsToName} className="users__name">
+                    {name}
+                </div>
                 <div className="users__email">
-                    <img src={mailImg} alt="mail"/>
-                    <a className="users__email__em" href={`mailto:${email}?subject=Post&body=Hello`}>{email}</a>
+                    <img src={mailImg} alt="mail" />
+                    <a className="users__email__em" href={`mailto:${email}?subject=Post&body=Hello`}>
+                        {email}
+                    </a>
                 </div>
                 <div className="users__phone">
-                    <img src={phoneImg} alt="phone"/>
-                    <a className="users__phone__ph" href={`tel:${phone}`}>{phone}</a>
+                    <img src={phoneImg} alt="phone" />
+                    <a className="users__phone__ph" href={`tel:${phone}`}>
+                        {phone}
+                    </a>
                 </div>
             </div>
         </div>

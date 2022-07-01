@@ -1,157 +1,122 @@
-import {Component} from 'react';
+import { useState, useEffect } from 'react'
 
+import Header from '../header/header'
+import PostsList from '../posts/posts-list'
+import UsersList from '../users/users-list'
+import Post from '../post/post'
 
-import Header from '../header/header';
-import PostsList from '../posts/posts-list';
-import UsersList from '../users/users-list';
-import Post from '../post/post';
+const App = () => {
+    const [menu, setMenu] = useState('posts')
+    const [dataUsers, setDataUsers] = useState([])
+    const [dataPosts, setDataPosts] = useState([])
+    const [showMore, setShowMore] = useState(false)
+    const [isFilter, setIsFilter] = useState(false)
+    const [idItem, setIdItem] = useState()
 
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then((response) => response.json())
+            .then((json) => {
+                setDataPosts(
+                    json.map((item) => {
+                        return [item.userId, item.id, item.title, item.body]
+                    })
+                )
+            })
+            .catch((e) => console.log(e))
 
-class App extends Component {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then((response) => response.json())
+            .then((json) => {
+                setDataUsers(
+                    json.map((item) => {
+                        return [item.id, item.name, item.email, item.phone]
+                    })
+                )
+            })
+            .catch((e) => console.log(e))
+    }, [])
 
-	constructor(props) {
-		super(props);
+    const onUpdateMenu = (str) => {
+        setMenu(str)
+    }
 
-		this.state = {
-			menu : 'posts',
-			dataUsers : [],
-			dataPosts : [],
-			showMore : false,
-			isFilter : false
-		}
-		this.id = ''
-	}
+    const onShowMore = () => {
+        setShowMore((showMore) => !showMore)
+    }
 
+    const getId = (id) => {
+        setMenu('post')
+        setIdItem(id)
+    }
 
-	componentDidMount() {
-		fetch('https://jsonplaceholder.typicode.com/posts')
-			.then((response) => response.json())
-			.then((json) => {
-				this.setState({
-					dataPosts : json.map(item => {
-						return [item.userId, item.id, item.title, item.body]
-					})
-				})
-			})
-			.catch(e => console.log(e));
+    const dataPostsWithDots = (elem) => {
+        const temp = elem.map((item) => {
+            if (item[3].length >= 150) {
+                return [item[0], item[1], item[2], item[3].slice(0, 150) + '...']
+            }
+            return item
+        })
+        return temp
+    }
 
-		fetch('https://jsonplaceholder.typicode.com/users')
-  			.then((response) => response.json())
-  			.then((json) => {
-				this.setState({
-					dataUsers : json.map(item => {
-						return [item.id, item.name, item.email, item.phone]
-					})
-				})
-			})
-			.catch(e => console.log(e));
-	}
+    const onChangeMenuAfterPost = () => {
+        setMenu('posts')
+    }
 
+    const onFilterPostsToName = (id) => {
+        setMenu('posts')
+        setIsFilter(true)
+        setIdItem(id)
+    }
 
-	onUpdateMenu = (str) => {
-		this.setState({
-			menu : str
-		})
-	}
+    const onChangeFilter = () => {
+        setMenu('posts')
+        setIsFilter(false)
+    }
 
-	onShowMore = () => {
-		this.setState({
-			showMore : !this.state.showMore
-		})
-	}
+    /*  */
 
-	getId = (id) => {
-		this.setState({
-			menu: 'post'
-		})
-		this.id = id
-	}
-	
-	dataPostsWithDots = (elem) => {
+    let onePost = menu === 'post' ? dataPosts.filter((item) => item[1] === idItem) : null
+    if (menu === 'post') {
+        const namePersone = dataUsers.filter((item) => item[0] === onePost[0][0])[0][1]
 
-		const q = elem.map(item => {
-			if (item[3].length >= 150) {
-				return [item[0], item[1], item[2], item[3].slice(0,150) + '...']
-			}
-			return item
-		})
-		return q
-	}
+        onePost = [...onePost, namePersone]
+    }
 
-	onChangeMenuAfterPost = () => {
-		this.setState({
-			menu: 'posts'
-		})
-	}
+    let visibleDataPosts
+    if (isFilter) {
+        visibleDataPosts = dataPosts
+    } else {
+        visibleDataPosts = showMore ? dataPosts : dataPosts.filter((item) => item[1] <= '8')
+    }
 
+    const visibleDataPostsWithDots = dataPostsWithDots(visibleDataPosts)
 
-	onFilterPostsToName = (id) => {
-		this.setState({
-			menu: 'posts',
-			isFilter : true
-		})
-		
-		this.id = id
-	}
+    const filterName = isFilter ? visibleDataPostsWithDots.filter((item) => item[0] === idItem) : visibleDataPostsWithDots
 
-	onChangeFilter = () => {
-		this.setState({
-			menu: 'posts',
-			isFilter : false
-		})
-	}
+    const postsContent =
+        menu === 'posts' ? (
+            <PostsList
+                onShowMore={onShowMore}
+                visibleDataPostsWithDots={filterName}
+                dataUsers={dataUsers}
+                getId={getId}
+                isFilter={isFilter}
+                onChangeFilter={onChangeFilter}
+            />
+        ) : null
+    const usersContent = menu === 'users' ? <UsersList dataUsers={dataUsers} onFilterPostsToName={onFilterPostsToName} /> : null
+    const postContent = menu === 'post' ? <Post onePost={onePost} onChangeMenuAfterPost={onChangeMenuAfterPost} /> : null
 
-	// qw = () => {
-	// 	if (this.state.dataPosts.length === 0) {
-	// 		this.setState({
-	// 			dataPosts : [['1','1','1','1']]
-	// 		})
-	// 	}
-	// }
-
-    render() {
-
-		const {menu, dataUsers, dataPosts, showMore, isFilter} = this.state;
-
-
-		let onePost = menu === 'post' ? dataPosts.filter(item => item[1] === this.id) : null
-		if (menu === 'post') {
-			const q = dataUsers.filter(item => item[0] === onePost[0][0])[0][1]
-			onePost = [...onePost, q]
-		}
-
-		let visibleDataPosts
-		if (isFilter) {
-			visibleDataPosts = dataPosts
-		} else {
-			visibleDataPosts = showMore ? dataPosts : dataPosts.filter(item => item[1] <= '8')
-		}
-
-		
-		const visibleDataPostsWithDots = this.dataPostsWithDots(visibleDataPosts);
-
-		const filterName = isFilter ? visibleDataPostsWithDots.filter(item => item[0] === this.id) : visibleDataPostsWithDots
-
-		const postsContent = menu === 'posts' ? <PostsList 
-		onShowMore={this.onShowMore} 
-		visibleDataPostsWithDots={filterName} 
-		dataUsers={dataUsers} 
-		getId={this.getId}
-		isFilter={isFilter}
-		onChangeFilter={this.onChangeFilter}/> : null;
-		const usersContent = menu === 'users' ? <UsersList dataUsers={dataUsers} onFilterPostsToName={this.onFilterPostsToName}/> : null;
-		const postContent = menu === 'post' ? <Post onePost={onePost} onChangeMenuAfterPost={this.onChangeMenuAfterPost}/> : null;
-
-
-		return (
-		    <>
-			  	<Header onUpdateMenu={this.onUpdateMenu}/>
-			  	{postsContent}
-			  	{usersContent}
-			  	{postContent}
-			</>
-		);
-	}
+    return (
+        <>
+            <Header onUpdateMenu={onUpdateMenu} />
+            {postsContent}
+            {usersContent}
+            {postContent}
+        </>
+    )
 }
-  
-export default App;
+
+export default App
