@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 import Header from '../header/header'
@@ -110,12 +111,14 @@ const App = () => {
     const postContent = menu === 'post' ? <Post onePost={onePost} onChangeMenuAfterPost={onChangeMenuAfterPost} /> : null
 
     return (
-        <>
+        <Router>
             <Header onUpdateMenu={onUpdateMenu} />
-            {postsContent}
-            {usersContent}
-            {postContent}
-        </>
+            <Routes>
+                <Route exact path="/" element={postsContent} />
+                <Route exact path="/users" element={usersContent} />
+                <Route exact path="/post/:postId" element={postContent} />
+            </Routes>
+        </Router>
     )
 }
 

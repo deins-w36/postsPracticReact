@@ -17,7 +17,7 @@ const PostsList = (props) => {
             }
         }
 
-        return <PostsItem key={item[1]} title={item[2]} body={item[3]} userName={namePersone} getId={() => getId(item[1])} />
+        return <PostsItem key={item[1]} title={item[2]} body={item[3]} userName={namePersone} getId={() => getId(item[1])} idPost={item[1]} />
     })
     return (
         <section className="posts">

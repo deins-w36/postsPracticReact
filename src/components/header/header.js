@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import './header.scss'
 
@@ -20,12 +21,16 @@ const Header = (props) => {
                 <span></span>
             </div>
             <div className={clazz}>
-                <div onClick={onChangeMenu} className="header__burger-act__item" data-menu="posts">
-                    Posts
-                </div>
-                <div onClick={onChangeMenu} className="header__burger-act__item" data-menu="users">
-                    Users
-                </div>
+                <NavLink end to="/" style={({ isActive }) => ({ textDecoration: isActive ? 'none' : 'none' })}>
+                    <div onClick={onChangeMenu} className="header__burger-act__item" data-menu="posts">
+                        Posts
+                    </div>
+                </NavLink>
+                <NavLink end to="/users" style={({ isActive }) => ({ textDecoration: isActive ? 'none' : 'none' })}>
+                    <div onClick={onChangeMenu} className="header__burger-act__item" data-menu="users">
+                        Users
+                    </div>
+                </NavLink>
             </div>
         </header>
     )
