@@ -96,19 +96,19 @@ const App = () => {
 
     const filterName = isFilter ? visibleDataPostsWithDots.filter((item) => item[0] === idItem) : visibleDataPostsWithDots
 
-    const postsContent =
-        menu === 'posts' ? (
-            <PostsList
-                onShowMore={onShowMore}
-                visibleDataPostsWithDots={filterName}
-                dataUsers={dataUsers}
-                getId={getId}
-                isFilter={isFilter}
-                onChangeFilter={onChangeFilter}
-            />
-        ) : null
-    const usersContent = menu === 'users' ? <UsersList dataUsers={dataUsers} onFilterPostsToName={onFilterPostsToName} /> : null
-    const postContent = menu === 'post' ? <Post onePost={onePost} onChangeMenuAfterPost={onChangeMenuAfterPost} /> : null
+    const postsContent = (
+        <PostsList
+            onShowMore={onShowMore}
+            visibleDataPostsWithDots={filterName}
+            dataUsers={dataUsers}
+            getId={getId}
+            isFilter={isFilter}
+            onChangeFilter={onChangeFilter}
+        />
+    )
+
+    const usersContent = <UsersList dataUsers={dataUsers} onFilterPostsToName={onFilterPostsToName} />
+    const postContent = <Post onePost={onePost} onChangeMenuAfterPost={onChangeMenuAfterPost} />
 
     return (
         <Router>
